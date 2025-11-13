@@ -9,6 +9,7 @@ import org.egov.digit.model.User;
 import org.egov.digit.model.UserDevice;
 import org.egov.digit.repository.UserDeviceRepository;
 import org.egov.digit.repository.UserRepository;
+import org.egov.digit.util.EmailService;
 import org.egov.digit.util.PasswordGenerator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserDeviceRepository userDeviceRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
     // Get all users created by the logged-in user (admin or user)
     public List<User> getAllUsers(String requesterEmail) {
@@ -93,6 +95,19 @@ public class UserService {
                 .build();
 
         userDeviceRepository.save(device);
+
+        // Send welcome email with credentials
+        try {
+            emailService.sendWelcomeEmail(
+                savedUser.getEmail(), 
+                savedUser.getName(), 
+                randomPassword, 
+                device.getDeviceId()
+            );
+            log.info("Welcome email sent successfully to user: {}", savedUser.getEmail());
+        } catch (Exception e) {
+            log.warn("Failed to send welcome email to user: {}", savedUser.getEmail(), e);
+        }
 
         log.info("User created successfully with ID: {}", savedUser.getId());
         return savedUser;
