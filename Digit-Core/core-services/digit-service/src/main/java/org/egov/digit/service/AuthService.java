@@ -11,6 +11,10 @@ import org.egov.digit.model.User;
 import org.egov.digit.repository.PasswordResetTokenRepository;
 import org.egov.digit.repository.UserRepository;
 import org.egov.digit.security.JwtUtil;
+import org.egov.digit.util.EncryptionUtil;
+import org.egov.digit.util.IdGenUtil;
+import org.egov.digit.util.MDMSUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +32,12 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
+    private final EncryptionUtil encryptionUtil;
+    private final IdGenUtil idGenUtil;
+    private final MDMSUtil mdmsUtil;
+
+    @Value("${default.tenant.id}")
+    private String defaultTenantId;
 
     @Transactional
     public LoginResponse login(LoginRequest request) {
@@ -36,7 +46,22 @@ public class AuthService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        // Try enc-service verification first, fallback to BCrypt
+        boolean passwordValid = false;
+
+        // Check if password is signed (new format with SIG_ prefix)
+        if (user.getPassword() != null && user.getPassword().startsWith("SIG_")) {
+            // Remove SIG_ prefix and verify with enc-service
+            String signature = user.getPassword().substring(4);
+            passwordValid = encryptionUtil.verifyPassword(request.getPassword(), signature);
+            System.out.println("Password verification using enc-service: " + passwordValid);
+        } else {
+            // Old BCrypt password - use BCrypt verification
+            passwordValid = passwordEncoder.matches(request.getPassword(), user.getPassword());
+            System.out.println("Password verification using BCrypt: " + passwordValid);
+        }
+
+        if (!passwordValid) {
             System.out.println("Invalid password for email: " + request.getEmail());
             throw new RuntimeException("Invalid email or password");
         }
@@ -129,8 +154,21 @@ public class AuthService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // Sign new password using enc-service
+        String signedPassword = encryptionUtil.signPassword(request.getNewPassword());
+
+        // If enc-service fails, fallback to BCrypt
+        String passwordToStore;
+        if (signedPassword != null) {
+            passwordToStore = "SIG_" + signedPassword;
+            System.out.println("New password signed using enc-service");
+        } else {
+            passwordToStore = passwordEncoder.encode(request.getNewPassword());
+            System.out.println("New password encrypted using BCrypt (fallback)");
+        }
+
         // Update password
-        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        user.setPassword(passwordToStore);
         userRepository.save(user);
 
         // Mark token as used
@@ -149,20 +187,45 @@ public class AuthService {
             throw new RuntimeException("Email already registered");
         }
 
+        // Validate role using MDMS
+        String role = request.getRole() != null ? request.getRole() : "user";
+        if (!mdmsUtil.isValidRole(role, defaultTenantId)) {
+            System.out.println("Invalid role: " + role);
+            throw new RuntimeException("Invalid role: " + role + ". Allowed roles: admin, user, secondary_user");
+        }
+
+        // Generate user code using egov-idgen
+        String userCode = idGenUtil.generateUserId(defaultTenantId);
+        System.out.println("Generated user code: " + userCode);
+
+        // Sign password using enc-service
+        String signedPassword = encryptionUtil.signPassword(request.getPassword());
+
+        // If enc-service fails, fallback to BCrypt
+        String passwordToStore;
+        if (signedPassword != null) {
+            passwordToStore = "SIG_" + signedPassword; // Prefix to identify signed passwords
+            System.out.println("Password signed using enc-service");
+        } else {
+            passwordToStore = passwordEncoder.encode(request.getPassword());
+            System.out.println("Password encrypted using BCrypt (fallback)");
+        }
+
         // Create new user
         User user = User.builder()
+                .userCode(userCode)
                 .name(request.getName())
                 .email(request.getEmail())
                 .phone(request.getPhone())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole() != null ? request.getRole() : "user")
+                .password(passwordToStore)
+                .role(role)
                 .accessLevel("limited")
                 .status("active")
                 .noOfSecUser(3) // Default value
                 .build();
 
         User savedUser = userRepository.save(user);
-        System.out.println("User registered successfully with ID: " + savedUser.getId());
+        System.out.println("User registered successfully with ID: " + savedUser.getId() + " and code: " + savedUser.getUserCode());
 
         return savedUser;
     }

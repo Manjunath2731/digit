@@ -32,6 +32,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "user_code", unique = true, length = 50)
+    private String userCode; // Human-readable ID like USER-2024-000001
+
     @NotBlank(message = "Name is required")
     @Size(max = 255)
     @Column(nullable = false)
