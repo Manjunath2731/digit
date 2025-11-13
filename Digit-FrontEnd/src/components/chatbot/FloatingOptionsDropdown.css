@@ -1,0 +1,149 @@
+/* Floating options dropdown for maximized view */
+.floating-options-dropdown {
+  position: fixed;
+  bottom: 80px; /* Above the input area */
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Ensure the dropdown appears above everything else when maximized */
+.maximized-modal .floating-options-dropdown {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 800px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 1001;
+}
+
+/* Style the dropdown container inside floating dropdown */
+.floating-options-dropdown .chat-options-dropdown-container {
+  position: relative;
+  margin-top: 0;
+  z-index: 10;
+}
+
+.floating-options-dropdown .chat-options-dropdown-trigger {
+  width: 100%;
+  padding: 14px 18px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: #495057;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.floating-options-dropdown .chat-options-dropdown-trigger:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.floating-options-dropdown .chat-options-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  animation: dropdownSlideUp 0.3s ease;
+}
+
+.floating-options-dropdown .chat-option-dropdown-item {
+  width: 100%;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #495057;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.floating-options-dropdown .chat-option-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.floating-options-dropdown .chat-option-dropdown-item:hover {
+  background: #f8f9fa;
+}
+
+.floating-options-dropdown .chat-option-dropdown-item:active {
+  background: #e9ecef;
+}
+
+/* Animation for dropdown sliding up from bottom */
+@keyframes dropdownSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide regular chat options when maximized */
+.maximized-modal .chat-options {
+  display: none !important;
+}
+
+/* Ensure the floating dropdown doesn't interfere with scrolling */
+.maximized-modal .chat-content-container {
+  padding-bottom: 140px; /* Make room for floating dropdown */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-options-dropdown {
+    bottom: 70px;
+    left: 10px;
+    right: 10px;
+    padding: 12px;
+  }
+  
+  .maximized-modal .floating-options-dropdown {
+    bottom: 80px;
+    width: calc(100% - 20px);
+    padding: 16px;
+  }
+  
+  .floating-options-dropdown .chat-options-dropdown-trigger {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .floating-options-dropdown .chat-option-dropdown-item {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}

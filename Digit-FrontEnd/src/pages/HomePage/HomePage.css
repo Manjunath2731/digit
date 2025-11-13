@@ -1,0 +1,161 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 530px;
+  background-image: url('../../assets/images/city-bridge.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px); /* Apply blur to hero section */
+  margin-bottom: 0px;
+  transition: filter 0.3s ease;
+}
+
+/* Services Section */
+.services-section {
+  padding: 20px 0 0;
+  position: relative;
+  background-color: #fff;
+  /* border-bottom: 28px solid #ded4f2; */
+}
+
+.container {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 0px 0 30px;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 5px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  filter: blur(3px); /* Apply blur to all service items */
+  position: relative;
+}
+
+.service-item:hover {
+  transform: translateY(-3px);
+}
+
+.service-item.active {
+  background-color: transparent;
+  color: inherit;
+  filter: none !important; /* Remove blur from active item (Community Development) */
+  z-index: 2; /* Ensure active item appears above blurred items */
+}
+
+.service-icon {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8D93A5;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.service-item.active .service-icon {
+  background-color: #6138F5;
+  box-shadow: 0 3px 6px rgba(107, 70, 193, 0.2);
+}
+
+.service-icon svg {
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
+.icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.service-item.active .service-icon svg {
+  color: white;
+}
+
+.service-item h3 {
+  font-size: 17px;
+  margin-top: 6px;
+  color: #555;
+  font-weight: 400;
+  line-height: 1.2;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.2px;
+}
+
+.service-item.active h3 {
+  color: #444;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .hero-section {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .hero-section {
+    height: 260px;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .service-item {
+    padding: 5px 2px;
+  }
+  
+  .service-icon {
+    width: 75px;
+    height: 75px;
+  }
+  
+  .service-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .service-item h3 {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+}

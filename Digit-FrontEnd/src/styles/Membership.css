@@ -1,0 +1,293 @@
+.membership-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.membership-content {
+  flex: 1;
+ 
+  padding: 30px 40px;
+}
+
+.membership-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.membership-logo-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #4CAF50;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.membership-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.cart-button:hover {
+  background-color: #303f9f;
+}
+
+.cart-badge {
+  font-size: 14px;
+}
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.show-entries {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.show-entries select {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.search-box input {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.device-table-container {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.device-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.device-table thead {
+  background-color: #f8f9fa;
+}
+
+.device-table th {
+  padding: 16px 15px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  border-bottom: 2px solid #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.device-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.device-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.device-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.device-table tbody tr:nth-child(even):hover {
+  background-color: #f5f5f5;
+}
+
+.device-table td {
+  padding: 18px 15px;
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle;
+}
+
+.device-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.device-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.device-id-badge {
+  display: inline-block;
+  background-color: #616161;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  width: fit-content;
+  letter-spacing: 0.3px;
+}
+
+.action-cart-button {
+  background-color: transparent;
+  border: none;
+  color: #3f51b5;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-cart-button:hover {
+  background-color: #e8eaf6;
+  transform: scale(1.1);
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px !important;
+  color: #999;
+  font-style: italic;
+}
+
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  color: #666;
+}
+
+.error-state {
+  color: #f44336;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.showing-info {
+  font-size: 14px;
+  color: #666;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #666;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.pagination-button:hover {
+  background-color: #f5f5f5;
+  border-color: #bbb;
+}
+
+.pagination-button.active {
+  background-color: #9c27b0;
+  color: white;
+  border-color: #9c27b0;
+}
+
+.pagination-ellipsis {
+  padding: 8px 4px;
+  color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .membership-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .table-controls {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .device-table-container {
+    overflow-x: auto;
+  }
+
+  .device-table {
+    min-width: 600px;
+  }
+
+  .table-footer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,125 @@
+/* Responsive styles for ChatConversation component */
+
+/* Instruction toggle button in the middle of chat header - hidden by default */
+.instruction-toggle-mobile {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.instruction-toggle-mobile img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Desktop-only elements - hidden on mobile */
+@media (max-width: 480px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Show instruction toggle button in the middle of chat header on mobile */
+  .instruction-toggle-mobile {
+    display: block !important;
+  }
+
+  .chatbot-modal {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+  
+  .chat-content-container {
+    max-height: calc(100vh - 140px);
+  }
+  
+  /* Ensure the chat footer sticks to the bottom */
+  .chat-footer {
+    position: sticky;
+    bottom: 0;
+  }
+  
+  /* Show instruction button and panel over chat on mobile */
+  .instruction-toggle-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1100;
+    width: 45px;
+    height: 45px;
+    opacity: 0.9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .instructional-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1200;
+    background: linear-gradient(146deg, rgba(209, 248, 245, 0.98) 10%, rgba(232, 215, 253, 0.98) 90%);
+    border-radius: 0;
+    overflow-y: auto;
+  }
+  
+  .instructional-panel-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: none;
+    padding: 25px 15px;
+  }
+  
+  /* Show only the close icon on mobile without button background */
+  .instructional-close-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    width: auto;
+    height: auto;
+    display: block;
+    z-index: 1300;
+  }
+  
+  .instructional-close-button img {
+    width: 32px;
+    height: 32px;
+    /* filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); */
+  }
+  
+  /* Fix input zoom issues on iPhone */
+  .chat-input-container {
+    font-size: 16px;
+  }
+  
+  .chat-input-container input {
+    font-size: 16px;
+    transform: scale(1);
+    transform-origin: left center;
+  }
+  
+  /* Prevent auto-zoom on focus */
+  select, textarea, input[type="text"], input[type="password"],
+  input[type="datetime"], input[type="datetime-local"],
+  input[type="date"], input[type="month"], input[type="time"],
+  input[type="week"], input[type="number"], input[type="email"],
+  input[type="url"], input[type="search"], input[type="tel"],
+  input[type="color"] {
+    font-size: 16px !important;
+  }
+}

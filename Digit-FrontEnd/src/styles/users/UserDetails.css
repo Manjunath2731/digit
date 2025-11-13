@@ -1,0 +1,358 @@
+.user-details-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+}
+
+.main-content {
+  flex: 1;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-left h1 {
+  margin: 0 0 0.5rem 0;
+  color: #1f3b59;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.header-left p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.user-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.details-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-header h2 {
+  margin: 0;
+  color: #1f3b59;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-item label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item span {
+  color: #1f2937;
+  font-size: 1rem;
+  /* padding: 0.5rem 0; */
+}
+
+/* Badge Styles */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  /* border-radius: 20px; */
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 5px;
+  /* border: none !important; */
+  width: 100px;
+  /* border: 1px solid #10b981; */
+}
+
+.status-badge.inactive {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  /* border: 1px solid #ef4444; */
+}
+
+.access-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.access-badge.full {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #3b82f6;
+}
+
+.access-badge.limited {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #f59e0b;
+}
+
+.access-badge.view_only {
+  background-color: #e0e7ff;
+  color: #4338ca;
+  border-color: #6366f1;
+}
+
+.device-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none !important;
+  /* border: 1px solid; */
+}
+
+.device-badge.mobile {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #0ea5e9;
+}
+
+.device-badge.tablet {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #f59e0b;
+}
+
+.device-badge.desktop {
+  background-color: #dcfce7;
+  color: #166534;
+  /* border-color: #22c55e; */
+  border: none !important;
+}
+
+.device-badge.all {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+  border-color: #a855f7;
+}
+
+.device-badge.not-specified {
+  background-color: #e5e7eb;
+  color: #4b5563;
+  border: none !important;
+  /* border-color: #6b7280; */
+}
+
+/* Action Buttons */
+.details-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Loading and Error States */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-spinner {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  gap: 1rem;
+}
+
+.error-container h2 {
+  color: #dc2626;
+  margin: 0;
+}
+
+.error-container p {
+  color: #666;
+  margin: 0;
+}
+
+/* Dashboard layout fixes */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dashboard-content-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+/* Override any conflicting styles */
+.user-details-container .main-content {
+  padding: 0 !important;
+}
+
+/* Ensure proper header styling */
+.auth-header {
+  background-color: #1f3b59;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-header .header-logo {
+  height: 32px;
+  width: auto;
+}
+
+.auth-header .logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.auth-header .language-selector {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Footer styling */
+.auth-footer {
+  background-color: #f8f9fa;
+  padding: 1rem 2rem;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.auth-footer .footer-logo {
+  height: 24px;
+  width: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-details-container {
+    padding: 1rem;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .details-card {
+    padding: 1rem;
+  }
+  
+  .details-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .header-left h1 {
+    font-size: 1.5rem;
+  }
+  
+  .dashboard-content-wrapper {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-details-container {
+    padding: 0.5rem;
+  }
+  
+  .details-card {
+    padding: 0.75rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

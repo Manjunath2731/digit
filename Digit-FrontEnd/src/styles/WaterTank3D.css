@@ -1,0 +1,37 @@
+/* Water Tank 3D - Exact implementation from waterTank.min.js */
+
+._tank {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+._balance {
+  overflow: visible !important;
+}
+
+._filled {
+  overflow: visible !important;
+}
+
+._percentageTag {
+  font-weight: 600;
+  color: #333;
+}
+
+._canvas {
+  display: block;
+}
+
+/* Tank visual container with circular background */
+.tank-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 340px;
+  background: radial-gradient(ellipse at center, #e8e8e8 0%, #f0f0f0 50%, transparent 65%);
+  border-radius: 50%;
+  padding: 40px 20px;
+  perspective: 800px;
+  perspective-origin: center center;
+}

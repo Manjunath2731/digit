@@ -1,0 +1,77 @@
+.chatbot-wrapper.no-blur {
+  filter: none !important;
+  z-index: 1000;
+  position: relative;
+}
+
+.chatbot-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: none;
+}
+
+.chatbot-modal-container.show {
+  display: block;
+}
+
+.modal-option-handlers {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 100px;
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.option-handler {
+  width: 120px;
+  height: 100px;
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+}
+
+.speak-handler {
+  left: 30px;
+  top: 240px;
+}
+
+.chat-handler {
+  right: 30px;
+  top: 240px;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+  .modal-option-handlers {
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    width: 80%;
+  }
+  
+  .option-handler {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    height: 80px;
+  }
+  
+  .speak-handler {
+    top: 270px;
+  }
+  
+  .chat-handler {
+    top: 270px;
+  }
+}

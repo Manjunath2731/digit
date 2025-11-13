@@ -1,0 +1,37 @@
+.verify-otp-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.otp-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.resend-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.resend-button {
+  background: none;
+  border: none;
+  color: #1f3b59;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.resend-button:hover:not(.disabled) {
+  text-decoration: underline;
+}
+
+.resend-button.disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}

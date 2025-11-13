@@ -1,0 +1,260 @@
+/* Device Map Page Styles */
+
+.device-map-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.device-map-main {
+  padding: clamp(0.75rem, 3vw, 2rem);
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(1rem, 4vw, 2rem);
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex-shrink: 0;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-icon {
+  font-size: 1.2em;
+}
+
+.map-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  border-left: 4px solid #4caf50;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(0.75rem, 3vw, 1.5rem);
+  border-bottom: 1px solid #eee;
+  background: linear-gradient(to right, rgba(76, 175, 80, 0.15), transparent);
+  flex-shrink: 0;
+}
+
+.card-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  color: #4caf50;
+  background: rgba(76, 175, 80, 0.15);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: #333;
+}
+
+.map-wrapper {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.map-container {
+  height: 100% !important;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #eee;
+  min-height: 400px;
+}
+
+.map-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4caf50;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+.spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  font-size: 1.2rem;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 250px !important;
+  max-height: none !important;
+}
+
+.leaflet-tile {
+  visibility: inherit !important;
+}
+
+.leaflet-pane {
+  z-index: 1 !important;
+}
+
+.leaflet-top, 
+.leaflet-bottom {
+  z-index: 10 !important;
+}
+
+/* Make Leaflet controls more touch-friendly */
+.leaflet-control-zoom a {
+  width: clamp(30px, 6vw, 36px);
+  height: clamp(30px, 6vw, 36px);
+  line-height: clamp(30px, 6vw, 36px);
+  font-size: clamp(16px, 4vw, 18px);
+}
+
+/* Custom marker labels */
+.device-label {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #4caf50;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.device-label div {
+  text-align: center;
+}
+
+/* Leaflet popup styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content {
+  margin: 12px;
+  font-family: inherit;
+}
+
+.leaflet-popup-content h3 {
+  color: #4caf50;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 8px;
+}
+
+/* Tablet styles */
+@media (max-width: 992px) {
+  .device-map-main {
+    height: calc(100vh - 100px);
+  }
+  
+  .map-container {
+    min-height: 350px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .device-map-main {
+    height: calc(100vh - 80px);
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .map-container {
+    min-height: 300px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .device-map-main {
+    padding: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .map-wrapper {
+    padding: 0.75rem;
+  }
+
+  .map-container {
+    min-height: 250px;
+    border-radius: 6px;
+  }
+
+  /* Smaller Leaflet controls for mobile */
+  .leaflet-control-zoom a {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 16px;
+  }
+
+  .device-label {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}

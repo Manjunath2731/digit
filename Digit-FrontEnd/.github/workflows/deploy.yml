@@ -1,0 +1,122 @@
+name: Deploy React App to Google Cloud
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+    types: [ closed ]
+
+jobs:
+  deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+      
+    - name: Create environment file
+      run: |
+        echo "REACT_APP_API_URL=http://34.14.142.242:5005/api" > .env
+        
+    - name: Build React app
+      run: CI=false npm run build
+      
+    - name: Create deployment archive
+      run: |
+        tar -czf deployment.tar.gz build/ package.json package-lock.json ecosystem.config.js
+        
+    - name: Deploy to Google Cloud Server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: 34.14.142.242
+        username: madhavneel297
+        key_path: ssh-private-key.txt
+        port: ${{ secrets.GCP_PORT || 22 }}
+        script: |
+          # Set variables
+          APP_NAME="digit-frontend"
+          DEPLOY_PATH="/home/madhavneel297/apps/digit-frontend"
+          
+          # Load node environment
+          export PATH=$PATH:/usr/bin:/usr/local/bin
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          
+          # Create deployment directory if it doesn't exist
+          mkdir -p $DEPLOY_PATH
+          cd $DEPLOY_PATH
+          
+          # Stop PM2 process if running
+          pm2 stop $APP_NAME || true
+          
+          # Backup current deployment (optional)
+          if [ -d "build" ]; then
+            mv build build_backup_$(date +%Y%m%d_%H%M%S) || true
+          fi
+          
+          # Clean up old files
+          rm -rf build package.json package-lock.json ecosystem.config.js
+          
+    - name: Copy files to server
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: 34.14.142.242
+        username: madhavneel297
+        key_path: ssh-private-key.txt
+        port: ${{ secrets.GCP_PORT || 22 }}
+        source: "deployment.tar.gz"
+        target: /home/madhavneel297/apps/digit-frontend
+        
+    - name: Extract and start application
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: 34.14.142.242
+        username: madhavneel297
+        key_path: ssh-private-key.txt
+        port: ${{ secrets.GCP_PORT || 22 }}
+        script: |
+          # Set variables
+          APP_NAME="digit-frontend"
+          DEPLOY_PATH="/home/madhavneel297/apps/digit-frontend"
+          
+          # Load node environment
+          export PATH=$PATH:/usr/bin:/usr/local/bin
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          
+          cd $DEPLOY_PATH
+          
+          # Extract deployment files
+          tar -xzf deployment.tar.gz
+          rm deployment.tar.gz
+          
+          # Install/update dependencies if package.json changed
+          npm ci --production
+          
+          # Start/restart the application with PM2
+          pm2 start ecosystem.config.js || pm2 restart $APP_NAME
+          
+          # Save PM2 configuration
+          pm2 save
+          
+          # Show PM2 status
+          pm2 status
+          
+    - name: Cleanup local files
+      run: rm -f deployment.tar.gz
+      
+    - name: Deployment Status
+      run: |
+        echo "✅ Deployment completed successfully!"
+        echo "🚀 Application should be running on your Google Cloud server"

@@ -1,0 +1,172 @@
+# GitHub Actions Configuration Example
+# Copy this file and configure for your environment
+
+# Docker Registry Configuration
+docker:
+  registry: ghcr.io
+  # Alternative registries:
+  # registry: docker.io
+  # registry: <your-aws-account>.dkr.ecr.<region>.amazonaws.com
+  
+  image_prefix: ${GITHUB_REPOSITORY_OWNER}
+  # Or use custom prefix:
+  # image_prefix: myorg
+
+# Kubernetes Configuration
+kubernetes:
+  # Cluster contexts for different environments
+  dev:
+    cluster: dev-cluster
+    namespace: core-services-dev
+    url: https://dev.yourdomain.com
+  
+  staging:
+    cluster: staging-cluster
+    namespace: core-services-staging
+    url: https://staging.yourdomain.com
+  
+  production:
+    cluster: prod-cluster
+    namespace: core-services-prod
+    url: https://yourdomain.com
+
+# Build Configuration
+build:
+  java_version: '17'
+  maven_opts: '-Xmx3072m'
+  
+  # Maven profiles to activate
+  profiles:
+    - default
+  
+  # Skip tests during build (not recommended)
+  skip_tests: false
+
+# Services Configuration
+services:
+  # List of services to build and deploy
+  enabled:
+    - audit-service
+    - boundary-service
+    - egov-accesscontrol
+    - egov-enc-service
+    - egov-filestore
+    - egov-idgen
+    - egov-indexer
+    - egov-localization
+    - egov-location
+    - egov-notification-mail
+    - egov-notification-sms
+    - egov-otp
+    - egov-persister
+    - egov-pg-service
+    - egov-url-shortening
+    - egov-workflow-v2
+    - gateway
+    - internal-gateway-scg
+    - mdms-v2
+    - service-request
+    - user-otp
+  
+  # Services to exclude from automatic deployment
+  exclude_from_auto_deploy:
+    - gateway
+    - internal-gateway-scg
+
+# Code Quality Configuration
+code_quality:
+  sonarcloud:
+    enabled: true
+    organization: ${GITHUB_REPOSITORY_OWNER}
+    project_key: core-services
+  
+  # Code coverage threshold
+  coverage:
+    minimum: 70
+    fail_on_low: false
+
+# Security Scanning
+security:
+  trivy:
+    enabled: true
+    severity: 'CRITICAL,HIGH'
+    ignore_unfixed: false
+  
+  dependency_check:
+    enabled: false
+    fail_on_cvss: 7
+
+# Notifications
+notifications:
+  slack:
+    enabled: true
+    # Webhook URL should be in secrets
+    channels:
+      success: '#deployments'
+      failure: '#alerts'
+  
+  email:
+    enabled: false
+    recipients:
+      - devops@yourdomain.com
+
+# Deployment Strategy
+deployment:
+  strategy: rolling
+  # Options: rolling, blue-green, canary
+  
+  rolling:
+    max_surge: 1
+    max_unavailable: 0
+  
+  health_check:
+    enabled: true
+    endpoint: /actuator/health
+    timeout: 300
+  
+  rollback:
+    auto_rollback_on_failure: true
+
+# Environment Variables (non-sensitive)
+env_vars:
+  dev:
+    LOG_LEVEL: DEBUG
+    SPRING_PROFILES_ACTIVE: dev
+  
+  staging:
+    LOG_LEVEL: INFO
+    SPRING_PROFILES_ACTIVE: staging
+  
+  production:
+    LOG_LEVEL: WARN
+    SPRING_PROFILES_ACTIVE: prod
+
+# Resource Limits
+resources:
+  dev:
+    cpu: '500m'
+    memory: '1Gi'
+  
+  staging:
+    cpu: '1000m'
+    memory: '2Gi'
+  
+  production:
+    cpu: '2000m'
+    memory: '4Gi'
+
+# Caching
+cache:
+  maven:
+    enabled: true
+  
+  docker:
+    enabled: true
+    mode: max
+
+# Artifacts
+artifacts:
+  retention_days: 7
+  include:
+    - '**/*.jar'
+    - '**/target/site/**'

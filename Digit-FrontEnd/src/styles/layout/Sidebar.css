@@ -1,0 +1,268 @@
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background-image: url('https://nimblevision.io/public/assets/img/sidebar-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #1a1a2e;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.778);
+  z-index: 0;
+}
+
+.sidebar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 52px;
+
+  border-radius: 50%;
+}
+
+.logo-text {
+  color: white;
+  font-size: 1.2rem !important;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-profile {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.profile-image {
+  display: flex;
+  justify-content: center;
+}
+
+.default-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #4a5568;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+}
+
+.dropdown-icon {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+}
+
+.phone-number, .email {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.user-role {
+  margin: 8px 0 0 0;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 0px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-badge.admin {
+  background-color: #0f519a;
+  color: white;
+}
+
+.role-badge.user {
+  background-color: #0f519a;
+  color: white;
+}
+
+.role-badge.secondary_user {
+  background-color: #0f519a;
+  color: white;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  border-left: 0px solid transparent;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  margin: 0.25rem 0;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.menu-item.active {
+  background: #e91e63;
+  color: white;
+  border-radius: 0;
+}
+
+.menu-item.active .menu-icon {
+  color: white;
+}
+
+.menu-icon {
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-label {
+  font-size: 0.95rem;
+}
+
+/* Submenu styles */
+.menu-parent {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.submenu-arrow {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.submenu-arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.submenu-item {
+  padding-left: 3.5rem !important;
+  font-size: 0.9rem;
+}
+
+.submenu-item .menu-icon {
+  font-size: 1rem;
+  width: 20px;
+}
+
+.submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Nested submenu styles */
+.nested-submenu {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nested-submenu-item {
+  padding-left: 5rem !important;
+  font-size: 0.85rem;
+}
+
+.nested-submenu-item .menu-icon {
+  font-size: 0.9rem;
+  width: 18px;
+}
+
+.nested-submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.sidebar-footer .logout-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-footer .logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+}

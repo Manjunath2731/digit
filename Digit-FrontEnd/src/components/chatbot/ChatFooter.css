@@ -1,0 +1,232 @@
+/* ===== FOOTER COMPONENT STYLES ===== */
+
+/* Specific button styles */
+.text-size-increase-btn::before {
+  content: "A+";
+  font-size: var(--Font-Size-S);
+  font-weight: var(--Font-Weight-SemiBold);
+}
+
+.text-size-decrease-btn::before {
+  content: "A-";
+  font-size: var(--Font-Size-S);
+  font-weight: var(--Font-Weight-SemiBold);
+}
+
+/* Footer center styling */
+.footer-center {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.footer-center .footer-text {
+  font-size: var(--Font-Size-XS);
+  line-height: var(--Font-Line-Height-XS);
+  font-weight: var(--Font-Weight-SemiBold);
+  color: var(--Text-Secondary, #8d93a5);
+}
+
+.footer-center .viewpro-image {
+  width: 74px;
+  height: 10px;
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Language Selector Styles */
+.language-selector {
+  width: 71px;
+  height: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 4px;
+  border: 1px solid #6138f5;
+  transition: background-color 300ms ease-out, opacity 300ms ease-out,
+    visibility 300ms ease-out, transform 300ms ease-out;
+  position: relative;
+}
+
+.language-selector:hover {
+  background-color: white;
+}
+
+/* Inner elements styling */
+.language-selector .language-text,
+.language-selector svg {
+  width: 16px;
+  height: 16px;
+  transition: opacity 300ms ease-out, visibility 300ms ease-out,
+    transform 300ms ease-out;
+}
+
+.language-selector .flag-icon {
+  width: 22px;
+  height: 16px;
+  font-size: var(--Font-Line-Height-XS);
+  line-height: var(--Font-Line-Height-XS);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 300ms ease-out, visibility 300ms ease-out,
+    transform 300ms ease-out;
+}
+
+.language-selector .language-text {
+  font-size: var(--Font-Size-XS);
+  line-height: var(--Font-Line-Height-XS);
+  font-weight: var(--Font-Weight-SemiBold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .language-selector {
+    width: 60px;
+    height: 24px;
+  }
+
+  .language-selector .flag-icon,
+  .language-selector .language-text,
+  .language-selector svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .language-selector .flag-icon {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .language-selector .language-text {
+    font-size: calc(var(--Font-Size-XS) - 1px);
+    line-height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-selector {
+    width: 50px;
+    height: 22px;
+    gap: 2px;
+  }
+
+  .language-selector .flag-icon,
+  .language-selector .language-text,
+  .language-selector svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .language-selector .flag-icon {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .language-selector .language-text {
+    font-size: calc(var(--Font-Size-XS) - 2px);
+    line-height: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .language-selector {
+    width: 45px;
+    height: 20px;
+  }
+
+  .language-selector .flag-icon,
+  .language-selector .language-text,
+  .language-selector svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .language-selector .flag-icon {
+    font-size: 10px;
+    line-height: 10px;
+  }
+
+  .language-selector .language-text {
+    font-size: calc(var(--Font-Size-XS) - 3px);
+    line-height: 10px;
+  }
+}
+
+/* Additional hover effects for better UX */
+.language-selector:hover .flag-icon,
+.language-selector:hover .language-text {
+  transform: scale(1.05);
+}
+
+/* Click effect for chevron - 360 degree rotation */
+.language-selector:active svg {
+  transform: rotate(360deg);
+}
+
+/* Remove hover rotation for chevron */
+.language-selector svg {
+  transition: transform 300ms ease-out;
+}
+
+/* Focus states for accessibility */
+.language-selector:focus {
+  outline: 2px solid #6138f5;
+  outline-offset: 2px;
+}
+
+.language-selector:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.language-selector:focus-visible {
+  outline: 2px solid #6138f5;
+  outline-offset: 2px;
+}
+
+/* Disclaimer Button Styles */
+.disclaimer-button {
+  font-family: var(--Font-Family-Body);
+  font-weight: var(--Font-Weight-Regular);
+  font-style: normal;
+  font-size: var(--Font-Size-S);
+  line-height: var(--Font-Line-Height-S);
+  letter-spacing: var(--Font-Kerning-Normal);
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  /* color: inherit; */
+  color: #6138f5;
+  text-decoration: none;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.disclaimer-button:hover {
+  color: var(--Text-Accent);
+  opacity: 0.8;
+}
+
+.disclaimer-button:focus {
+  outline: 2px solid var(--Text-Accent);
+  outline-offset: 2px;
+}
+
+.disclaimer-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.disclaimer-button:focus-visible {
+  outline: 2px solid var(--Text-Accent);
+  outline-offset: 2px;
+}

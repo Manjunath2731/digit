@@ -1,0 +1,284 @@
+# Kubernetes Deployment Template for Core Services
+# This is a template that can be used with the CI/CD pipeline
+# Replace placeholders with actual values or use with envsubst/kustomize
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${NAMESPACE}
+  labels:
+    environment: ${ENVIRONMENT}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${SERVICE_NAME}-config
+  namespace: ${NAMESPACE}
+data:
+  application.properties: |
+    server.port=8080
+    spring.profiles.active=${ENVIRONMENT}
+    logging.level.root=${LOG_LEVEL}
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${SERVICE_NAME}-secret
+  namespace: ${NAMESPACE}
+type: Opaque
+stringData:
+  db-password: ${DB_PASSWORD}
+  db-username: ${DB_USERNAME}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+  labels:
+    app: ${SERVICE_NAME}
+    version: ${VERSION}
+    environment: ${ENVIRONMENT}
+spec:
+  replicas: ${REPLICAS}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: ${SERVICE_NAME}
+  template:
+    metadata:
+      labels:
+        app: ${SERVICE_NAME}
+        version: ${VERSION}
+        environment: ${ENVIRONMENT}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      serviceAccountName: ${SERVICE_NAME}
+      containers:
+      - name: ${SERVICE_NAME}
+        image: ${DOCKER_REGISTRY}/${IMAGE_PREFIX}/${SERVICE_NAME}:${IMAGE_TAG}
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        - name: management
+          containerPort: 8081
+          protocol: TCP
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: ${ENVIRONMENT}
+        - name: SERVER_PORT
+          value: "8080"
+        - name: MANAGEMENT_SERVER_PORT
+          value: "8081"
+        - name: DB_HOST
+          value: ${DB_HOST}
+        - name: DB_PORT
+          value: "${DB_PORT}"
+        - name: DB_NAME
+          value: ${DB_NAME}
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: ${SERVICE_NAME}-secret
+              key: db-username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ${SERVICE_NAME}-secret
+              key: db-password
+        - name: JAVA_OPTS
+          value: "-Xmx${MEMORY_LIMIT} -Xms${MEMORY_REQUEST}"
+        envFrom:
+        - configMapRef:
+            name: ${SERVICE_NAME}-config
+        resources:
+          requests:
+            memory: ${MEMORY_REQUEST}
+            cpu: ${CPU_REQUEST}
+          limits:
+            memory: ${MEMORY_LIMIT}
+            cpu: ${CPU_LIMIT}
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: management
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: management
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: management
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 30
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          readOnly: true
+        - name: logs
+          mountPath: /var/log
+      volumes:
+      - name: config
+        configMap:
+          name: ${SERVICE_NAME}-config
+      - name: logs
+        emptyDir: {}
+      imagePullSecrets:
+      - name: ghcr-secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+  labels:
+    app: ${SERVICE_NAME}
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
+  - port: 8081
+    targetPort: management
+    protocol: TCP
+    name: management
+  selector:
+    app: ${SERVICE_NAME}
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ${SERVICE_NAME}
+  minReplicas: ${MIN_REPLICAS}
+  maxReplicas: ${MAX_REPLICAS}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+---
+# Optional: Ingress for external access
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - ${SERVICE_NAME}.${DOMAIN}
+    secretName: ${SERVICE_NAME}-tls
+  rules:
+  - host: ${SERVICE_NAME}.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ${SERVICE_NAME}
+            port:
+              number: 80
+
+---
+# Optional: PodDisruptionBudget for high availability
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: ${SERVICE_NAME}
+
+---
+# Optional: NetworkPolicy for security
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ${SERVICE_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  podSelector:
+    matchLabels:
+      app: ${SERVICE_NAME}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ${NAMESPACE}
+    ports:
+    - protocol: TCP
+      port: 8080
+  egress:
+  - to:
+    - namespaceSelector: {}
+    ports:
+    - protocol: TCP
+      port: 5432  # PostgreSQL
+    - protocol: TCP
+      port: 6379  # Redis
+    - protocol: TCP
+      port: 443   # HTTPS
+    - protocol: TCP
+      port: 53    # DNS
+    - protocol: UDP
+      port: 53    # DNS

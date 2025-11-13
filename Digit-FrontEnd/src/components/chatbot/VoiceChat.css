@@ -1,0 +1,1128 @@
+/* VoiceChat Component Styles */
+
+.voice-chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 20px 0px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.voice-chat-container-normal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 75px 15px 0px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.voice-chat-title {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "Bitter", serif;
+  color: #26272c;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.voice-options-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 58px;
+  gap: 10px;
+}
+
+/* Make a call section */
+.make-call-section {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.make-call-section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Bitter", serif;
+  color: #26272c;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+.phone_number{
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  /* padding: 0px 10px; */
+}
+.phone-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 10px;
+  gap: 10px;
+}
+.phone-outer {
+  width: 88px !important;
+  height: 88px !important;
+  border-radius: 50% !important;
+  border: 0.5px solid white;
+  /* background: linear-gradient(
+    to bottom,
+    #9a7fd9 0%,
+    #87ceeb 15%,
+    #87ceeb 30%,
+    #9a7fd9 100%
+  ) !important; */
+  background: linear-gradient(135deg, #d1f8f5 10%, #9a7fd9 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.phone-inner {
+  width: 65px !important;
+  height: 65px !important;
+  border-radius: 50% !important;
+  border: 0.5px solid white;
+  /* background: linear-gradient(
+    to bottom,
+    #9a7fd9 0%,
+    #87ceeb 15%,
+    #87ceeb 30%,
+    #9a7fd9 100%
+  ) !important; */
+  background: linear-gradient(135deg, #d1f8f5 10%, #9a7fd9 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.phone-icon-circle {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background-color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.phone-icon .phone-icon1 .phone-icon2 {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.phone-number {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: "Bitter", serif;
+  color: #26272c;
+}
+
+.call-now-button {
+  background-color: transparent;
+  color: #6138f5;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Bitter", serif;
+  cursor: pointer;
+}
+
+/* Receive a callback section */
+.callback-section {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.callback-section h3 {
+  font-size: 18px;
+  font-weight: 300;
+  text-align: left;
+  font-family: "Bitter", serif;
+  color: #26272c;
+}
+
+.callback-instruction {
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  color: #26272c;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.privacy{
+  margin-left: 10px;
+}
+.info-icon-small {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236138F5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form-group label {
+  display: flex;
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  color: #26272c;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 10px;
+  border: 1px solid #6138f5;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #6138f5;
+}
+.callback-privacy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.callback-outer {
+  background: linear-gradient(135deg, #d1f8f5 10%, #e8d7fd 100%);
+  border: 1px solid white;
+  width: 48%;
+  padding: 5px;
+  border-radius: 12px;
+}
+.callback-outer-normal {
+  background: linear-gradient(135deg, #d1f8f5 10%, #e8d7fd 100%);
+  border: 1px solid white;
+  width: 100%;
+  padding: 5px;
+  border-radius: 12px;
+}
+.callback-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.callback-options {
+  display: flex;
+}
+.voice-chat-title {
+  margin: 0 0 20px;
+  font-family: "Bitter", serif;
+  color: #26272c;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+}
+.callback-option-button {
+  flex: 1 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: #ffffff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 5px 5px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #26272c;
+  transition: all 0.2s;
+}
+
+.callback-option-button.active {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.callback-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236138F5"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.callbacks-button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.chatbot-callbacks-popup {
+  position: absolute;
+  /* bottom: 100%;  */
+  /* left: 100%; */
+  transform: translateX(-50%);
+  width: 50vw; /* 50% of viewport width */
+  max-width: 370px; /* Optional: set a maximum width */
+  min-width: 200px; /* Optional: set a minimum width */
+  background-color: white;
+  color: #333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  transform: translateX(-50%) translateY(10px);
+  z-index: 1000;
+  font-size: 12px !important;
+  line-height: 1.4;
+  border: 1px solid #ddd; /* Optional: add a subtle border */
+  display: flex;
+  flex-direction: row;
+}
+/* Arrow for normal state */
+.chatbot-callbacks-popup.show-tooltip-normal::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 40%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: white;
+
+}
+
+/* Arrow for maximized state */
+.chatbot-callbacks-popup.show-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 7%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: white;
+}
+
+.chatbot-callbacks-popup.show-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0%) translateY(-100%);
+    z-index: 5000;
+}
+.chatbot-callbacks-popup.show-tooltip-normal {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-78%) translateY(-5%);
+  z-index: 5000;
+  left: 100%;
+  bottom:100%;
+}
+
+.chatbot-callbacks-popup p {
+  margin: 0;
+  text-align: left;
+  font-size: 14px !important;
+}
+/* .viewpro-image{
+  width: ;
+} */
+
+.callbacks-button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.callbacks-tooltip-button .info-icon {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.callbacks-tooltip-button .info-icon::before {
+  content: "i";
+}
+
+.schedule-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236138F5"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Schedule Callback Styles */
+.schedule-callback-container {
+  background-color: rgba(232, 215, 253, 0.4);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.schedule-callback-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.schedule-inputs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.schedule-input-group {
+  flex: 1;
+}
+
+.schedule-input-group label {
+  display: block;
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  color: #26272c;
+  margin-bottom: 5px;
+}
+
+.date-input-container,
+.time-input-container {
+  position: relative;
+}
+
+.schedule-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  outline: none;
+  padding-right: 40px;
+}
+
+.calendar-icon,
+.clock-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.calendar-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236138F5"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5v-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.clock-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236138F5"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.schedule-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Bitter", serif;
+  color: #6138f5;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.phone-small-icon {
+  width: 18px;
+  height: 18px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236138F5"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Original schedule chevron icon */
+.schedule-chevron-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  position: relative;
+}
+
+.schedule-chevron-icon::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #6138f5;
+  border-bottom: 2px solid #6138f5;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.schedule-chevron-icon.rotate::before {
+  transform: rotate(-135deg);
+}
+
+/* New purple schedule chevron icon */
+.purple-schedule-chevron {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  border:2.5px solid #6138f5;
+  border-radius: 50%;
+}
+
+.purple-schedule-chevron::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-right: 2.5px solid #6138f5;
+  border-bottom: 2.5px solid #6138f5;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  top: 3px;
+  left: 4px;
+}
+
+.purple-schedule-chevron.rotate::before {
+  transform: rotate(-135deg);
+  top:5px;
+  left: 4px;
+}
+
+/* Loading spinner styles */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border: 2px solid rgba(128, 90, 213, 0.3);
+  border-radius: 50%;
+  border-top-color: #805ad5; /* Purple theme color */
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Disabled button styles */
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Processing text in buttons */
+button:disabled .processing-text {
+  color: #805ad5; /* Purple theme color */
+  font-weight: 500;
+}
+
+/* Form validation styles */
+.input-error {
+  border: 1px solid #ff3b30 !important;
+  background-color: rgba(255, 59, 48, 0.05) !important;
+}
+
+.error-message {
+  color: #ff3b30;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* Hide default calendar and time picker icons */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+  .voice-chat-title {
+    font-size: 20px;
+  }
+
+  .phone-number {
+    font-size: 20px;
+  }
+
+  .callback-options {
+    flex-direction: column;
+  }
+}
+/* Add these styles to your VoiceChat.css file */
+
+/* Add these styles to your VoiceChat.css file */
+
+/* Horizontal separator between voice options and disclaimer */
+.horizontal-separator-border {
+  width: 100%;
+  height: 0;
+  border-top: 1px solid #ffffff;
+  margin: 20px 0;
+  display: block;
+}
+/* Maximized layout styles */
+/* Add these styles to your VoiceChat.css file */
+
+/* Centering for maximized mode */
+.maximized-modal .welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.maximized-modal .make-call-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.maximized-modal .make-call-section h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.maximized-modal .phone-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maximized-modal .call-now-button {
+  align-self: center;
+}
+.maximized-modal .phone-icon {
+  width: 60px !important;
+  height: 60px !important;
+}
+.maximized-modal .phone-icon-circle {
+  width: 72px !important;
+  height: 72px !important;
+}
+/* Center the voice options container in maximized mode */
+.maximized-modal .voice-options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Maximized layout styles */
+.callback-section.maximized-layout {
+  width: 100%;
+}
+
+.callback-maximized-container {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  padding: 0px 0px;
+  margin-top: 15px;
+  margin-bottom: 45px;
+  align-items: flex-start;
+}
+.callback-receive{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.callback-receive-normal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.callback-section1 h3 {
+  font-size: 18px !important ;
+  font-weight: 400;
+  color: #26272c;
+}
+.callback-section2 h3 {
+  font-size: 18px !important;
+  font-weight: 400;
+  color: #26272c;
+}
+
+.callback-maximized-container .callback-section1,
+.callback-maximized-container .callback-section2 {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
+}
+
+.callback-separator {
+  width: 1px;
+  background-color: #ffffff;
+  min-height: 300px;
+  margin: 0 15px;
+  flex-shrink: 0;
+}
+
+/* Adjust form layout for maximized mode */
+.callback-maximized-container .form-group {
+  margin-bottom: 15px;
+}
+
+.callback-maximized-container .form-group input {
+  width: 100%;
+}
+
+/* Adjust button styles for maximized layout */
+.callback-maximized-container .callback-option-button {
+  width: 100%;
+  max-width: none;
+}
+
+/* Responsive adjustments for smaller screens within maximized mode */
+@media (max-width: 1200px) {
+  .callback-maximized-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .callback-separator {
+    width: 100%;
+    height: 1px;
+    min-height: 1px;
+    margin: 15px 0;
+  }
+}
+/* Text Size Classes for VoiceChat Form Elements */
+
+/* Text Size 80% */
+.text-size-80 .form-group label {
+  font-size: calc(14px * 0.8) !important;
+}
+
+.text-size-80 .form-group input {
+  font-size: calc(16px * 0.8) !important;
+}
+
+.text-size-80 .callback-instruction {
+  font-size: calc(14px * 0.8) !important;
+}
+
+.text-size-80 .callback-option-button {
+  font-size: calc(15px * 0.8) !important;
+}
+
+.text-size-80 .processing-text {
+  font-size: calc(14px * 0.8) !important;
+}
+
+.text-size-80 .error-message {
+  font-size: calc(12px * 0.8) !important;
+}
+
+.text-size-80 .phone-number {
+  font-size: calc(18px * 0.8) !important;
+}
+
+.text-size-80 .call-now-button {
+  font-size: calc(16px * 0.8) !important;
+}
+
+/* Text Size 90% */
+.text-size-90 .form-group label {
+  font-size: calc(14px * 0.9) !important;
+}
+
+.text-size-90 .form-group input {
+  font-size: calc(16px * 0.9) !important;
+}
+
+.text-size-90 .callback-instruction {
+  font-size: calc(14px * 0.9) !important;
+}
+
+.text-size-90 .callback-option-button {
+  font-size: calc(15px * 0.9) !important;
+}
+
+.text-size-90 .processing-text {
+  font-size: calc(14px * 0.9) !important;
+}
+
+.text-size-90 .error-message {
+  font-size: calc(12px * 0.9) !important;
+}
+
+.text-size-90 .phone-number {
+  font-size: calc(18px * 0.9) !important;
+}
+
+.text-size-90 .call-now-button {
+  font-size: calc(16px * 0.9) !important;
+}
+
+/* Text Size 100% (Default) */
+.text-size-100 .form-group label {
+  font-size: 14px !important;
+}
+
+.text-size-100 .form-group input {
+  font-size: 14px !important;
+}
+
+.text-size-100 .callback-instruction {
+  font-size: 14px !important;
+  text-align: left;
+}
+
+/* Inverted chevron for voice chat disclaimer - rotation only */
+.voice-chat .chevron-icon {
+  transform: rotate(180deg); /* Default state is pointing up */
+  transition: transform 0.3s ease;
+}
+
+.voice-chat .chevron-icon.rotate {
+  transform: rotate(0deg); /* When open, point down */
+}
+
+/* Inverted chevron for chatbot modal disclaimer - rotation only */
+.chatbot-modal .chevron-icon {
+  transform: rotate(180deg); /* Default state is pointing up */
+  transition: transform 0.3s ease;
+}
+
+.chatbot-modal .chevron-icon.rotate {
+  transform: rotate(0deg); /* When open, point down */
+}
+
+.text-size-100 .callback-option-button {
+  font-size: 15px !important;
+}
+
+.text-size-100 .processing-text {
+  font-size: 14px !important;
+}
+
+.text-size-100 .error-message {
+  font-size: 12px !important;
+}
+
+.text-size-100 .phone-number {
+  font-size: 26px !important;
+  font-weight: 600;
+}
+
+.text-size-100 .call-now-button {
+  font-size: 18px !important;
+}
+
+/* Text Size 110% */
+.text-size-110 .form-group label {
+  font-size: calc(14px * 1.1) !important;
+}
+
+.text-size-110 .form-group input {
+  font-size: calc(16px * 1.1) !important;
+}
+
+.text-size-110 .callback-instruction {
+  font-size: calc(14px * 1.1) !important;
+}
+
+.text-size-110 .callback-option-button {
+  font-size: calc(15px * 1.1) !important;
+}
+
+.text-size-110 .processing-text {
+  font-size: calc(14px * 1.1) !important;
+}
+
+.text-size-110 .error-message {
+  font-size: calc(12px * 1.1) !important;
+}
+
+.text-size-110 .phone-number {
+  font-size: calc(18px * 1.1) !important;
+}
+
+.text-size-110 .call-now-button {
+  font-size: calc(16px * 1.1) !important;
+}
+
+/* Text Size 125% */
+.text-size-125 .form-group label {
+  font-size: calc(14px * 1.25) !important;
+}
+
+.text-size-125 .form-group input {
+  font-size: calc(16px * 1.25) !important;
+}
+
+.text-size-125 .callback-instruction {
+  font-size: calc(14px * 1.25) !important;
+}
+
+.text-size-125 .callback-option-button {
+  font-size: calc(15px * 1.25) !important;
+}
+
+.text-size-125 .processing-text {
+  font-size: calc(14px * 1.25) !important;
+}
+
+.text-size-125 .error-message {
+  font-size: calc(12px * 1.25) !important;
+}
+
+.text-size-125 .phone-number {
+  font-size: calc(18px * 1.25) !important;
+}
+
+.text-size-125 .call-now-button {
+  font-size: calc(16px * 1.25) !important;
+}
+
+/* Text Size 150% */
+.text-size-150 .form-group label {
+  font-size: calc(14px * 1.5) !important;
+}
+
+.text-size-150 .form-group input {
+  font-size: calc(16px * 1.5) !important;
+}
+
+.text-size-150 .callback-instruction {
+  font-size: calc(14px * 1.5) !important;
+}
+
+.text-size-150 .callback-option-button {
+  font-size: calc(15px * 1.5) !important;
+}
+
+.text-size-150 .processing-text {
+  font-size: calc(14px * 1.5) !important;
+}
+
+.text-size-150 .error-message {
+  font-size: calc(12px * 1.5) !important;
+}
+
+.text-size-150 .phone-number {
+  font-size: calc(18px * 1.5) !important;
+}
+
+.text-size-150 .call-now-button {
+  font-size: calc(16px * 1.5) !important;
+}
+
+/* Ensure smooth transitions for form elements */
+.form-group label,
+.form-group input,
+.callback-instruction,
+.callback-option-button,
+.processing-text,
+.error-message,
+.phone-number,
+.call-now-button {
+  transition: font-size 0.3s ease;
+}
+/* Updated multi-pulse animation - starts from white background */
+/* Pulse animation with white and blue colors */
+.phone-icon-circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-icon-circle img {
+  width: 40px; /* Adjust based on your phone icon size */
+  height: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* First pulse ring - WHITE background */
+.phone-icon-circle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; /* Same as image */
+  height: 40px; /* Same as image */
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8); /* White background */
+  border: 2px solid rgba(255, 255, 255, 0.9); /* White border */
+  pointer-events: none;
+  animation: phone-white-pulse-ring 3s infinite ease-out;
+  z-index: 1; /* Behind the image */
+}
+
+/* Second pulse ring - LIGHT BLUE background */
+.phone-icon-circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; /* Same as image */
+  height: 40px; /* Same as image */
+  border-radius: 50%;
+  background: rgba(147, 197, 253, 0.7); /* Light blue background */
+  border: 2px solid rgba(96, 165, 250, 0.8); /* Light blue border */
+  pointer-events: none;
+  animation: phone-light-blue-pulse-ring 3s infinite ease-out 0.8s; /* Delayed start */
+  z-index: 1; /* Behind the image */
+}
+
+/* White pulse animation for phone */
+@keyframes phone-white-pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+/* Light blue pulse animation for phone */
+@keyframes phone-light-blue-pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0;
+  }
+}
+
+/* Multi-pulse version (enhanced effect) */
+.phone-icon-circle.multi-pulse::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  animation: phone-white-pulse-ring 3s infinite ease-out;
+  z-index: 1;
+}
+
+.phone-icon-circle.multi-pulse::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(224, 242, 254, 0.7);
+  border: 2px solid rgba(186, 230, 253, 0.8);
+  pointer-events: none;
+  animation: phone-light-blue-pulse-ring 5s infinite ease-out 0.3s;
+  z-index: 1;
+}
+
+@keyframes phone-multi-pulse-ring-1 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes phone-multi-pulse-ring-2 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
+  }
+}

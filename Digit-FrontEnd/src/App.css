@@ -1,0 +1,214 @@
+/* ===== APP COMPONENT STYLES ===== */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== CSS VARIABLES (ROOT) ===== */
+:root {
+  /* Font Family */
+  --Font-Family-Body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  
+  /* Font Sizes (based on 16px root) */
+  --Font-Size-XXL: 1.625em; /* 26px */
+  --Font-Size-XL: 1.375em;  /* 22px */
+  --Font-Size-L: 1.125em;   /* 18px */
+  --Font-Size-S: 0.875em;   /* 14px */
+  --Font-Size-XS: 0.75em;   /* 12px */
+  
+  /* Font Weights */
+  --Font-Weight-Regular: 400;
+  --Font-Weight-SemiBold: 500;
+  
+  /* Line Heights (unitless for better scaling) */
+  --Font-Line-Height-XXL: 1.23;  /* 32px/26px */
+  --Font-Line-Height-XL: 1.27;   /* 28px/22px */
+  --Font-Line-Height-L: 1.33;    /* 24px/18px */
+  --Font-Line-Height-S: 1.43;    /* 20px/14px */
+  --Font-Line-Height-XS: 1.5;    /* 18px/12px */
+  
+  /* Letter Spacing */
+  --Font-Kerning-Normal: 0;
+  
+  /* Text Colors */
+  --Text-Primary: #1F2937;
+  --Text-Secondary: #8D93A5;
+  --Text-Accent: #6138F5;
+  --Text-Light: #F9FAFB;
+  --Text-Dark: #111827;
+  
+  /* Background Colors */
+  --Background-Primary: #FFFFFF;
+  --Background-Secondary: #F3F4F6;
+  --Background-Accent: #6138F5;
+  --Background-Dark: #1F2937;
+  
+  /* Border Colors */
+  --Border-Light: #E5E7EB;
+  --Border-Medium: #6138F5;
+  --Border-Dark: #374151;
+  
+  /* State Colors */
+  --Success: #10B981;
+  --Warning: #F59E0B;
+  --Error: #EF4444;
+  --Info: #3B82F6;
+
+   /* Height Sizes (converted to em) */
+  --Height-3x: 2em;    /* 32px */
+  --Height-4x: 2em;    /* 32px */
+}
+
+/* ===== GLOBAL STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--Font-Family-Body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--Text-Primary);
+  background-color: var(--Background-Primary);
+}
+
+/* ===== TYPOGRAPHY UTILITY CLASSES ===== */
+.text-size-xxl {
+  font-family: var(--Font-Family-Body);
+  font-weight: var(--Font-Weight-Regular);
+  font-style: normal;
+  font-size: var(--Font-Size-XXL);
+  line-height: var(--Font-Line-Height-XXL);
+  letter-spacing: var(--Font-Kerning-Normal);
+}
+
+.text-size-xl {
+  font-family: var(--Font-Family-Body);
+  font-weight: var(--Font-Weight-Regular);
+  font-style: normal;
+  font-size: var(--Font-Size-XL);
+  line-height: var(--Font-Line-Height-XL);
+  letter-spacing: var(--Font-Kerning-Normal);
+}
+
+.text-size-l {
+  font-family: var(--Font-Family-Body);
+  font-weight: var(--Font-Weight-Regular);
+  font-style: normal;
+  font-size: var(--Font-Size-L);
+  line-height: var(--Font-Line-Height-L);
+  letter-spacing: var(--Font-Kerning-Normal);
+}
+
+.text-size-s {
+  font-family: var(--Font-Family-Body);
+  font-weight: var(--Font-Weight-Regular);
+  font-style: normal;
+  font-size: var(--Font-Size-S);
+  line-height: var(--Font-Line-Height-S);
+  letter-spacing: var(--Font-Kerning-Normal);
+}
+
+.text-size-xs {
+  font-family: var(--Font-Family-Body);
+  font-weight: var(--Font-Weight-SemiBold);
+  font-style: normal;
+  font-size: var(--Font-Size-XS);
+  line-height: var(--Font-Line-Height-XS);
+  letter-spacing: var(--Font-Kerning-Normal);
+  vertical-align: middle;
+}
+
+/* ===== ICON STYLES ===== */
+.icon-base {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.icon-base:hover,
+.icon-base.active {
+  background-color: white;
+  border: 1px solid #6138f5;
+}
+
+/* Icon content inside container stays 16px */
+.icon-base img,
+.icon-base svg,
+.icon-base span {
+  width: 16px;
+  height: 16px;
+}
+
+/* Icon with background image */
+.icon-base.icon-bg {
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.icon-base:has(button:disabled):hover {
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: not-allowed;
+}
+
+/* ===== TOOLTIP ANIMATION ===== */
+.tooltip-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: opacity 300ms ease-out, 
+              visibility 300ms ease-out, 
+              transform 300ms ease-out;
+}
+
+.tooltip-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}

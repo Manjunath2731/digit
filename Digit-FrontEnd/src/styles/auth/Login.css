@@ -1,0 +1,139 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-header-button {
+  position: relative;
+  bottom:20px;
+  margin-bottom: 0;
+}
+
+.login-header-button .custom-button {
+  padding: 15px 0;
+  pointer-events: none;
+  cursor: default;
+}
+
+.lets-go-button {
+  background: none;
+  border: none;
+  color: #ec4899;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.75rem 0;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.lets-go-button:hover {
+  color: #db2777;
+}
+
+.lets-go-button:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.general-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+.forgot-password a {
+  color: #a855f7;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.register-link {
+  margin-top: 0.3rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #4b5563;
+  padding: 0;
+}
+
+.register-link a {
+  color: #4b5563;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.demo-credentials {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.demo-credentials h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.demo-users {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.demo-user {
+  font-size: 0.8rem;
+  color: #6b7280;
+  padding: 0.25rem 0;
+}
+
+.demo-user strong {
+  color: #374151;
+  font-weight: 600;
+  display: inline-block;
+  width: 80px;
+}
+
+@media (max-width: 640px) {
+  .demo-credentials {
+    margin: 1rem 0;
+    padding: 0.75rem;
+  }
+  
+  .demo-user {
+    font-size: 0.75rem;
+  }
+  
+  .demo-user strong {
+    width: 70px;
+  }
+}
