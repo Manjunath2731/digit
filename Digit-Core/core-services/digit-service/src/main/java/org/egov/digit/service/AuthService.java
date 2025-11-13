@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -55,13 +57,28 @@ public class AuthService {
 
         log.info("Login successful for user: {}", user.getEmail());
 
-        return LoginResponse.builder()
-                .token(token)
+        // Build user response
+        LoginResponse.UserResponse userResponse = LoginResponse.UserResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
+                .phone(user.getPhone())
                 .role(user.getRole())
                 .accessLevel(user.getAccessLevel())
+                .status(user.getStatus())
+                .noOfSecUser(user.getNoOfSecUser())
+                .address(user.getAddress())
+                .addressDetails(user.getAddressDetails())
+                .lastLoginDate(user.getLastLoginDate())
+                .createdAt(user.getCreatedAt())
+                .updatedAt(user.getUpdatedAt())
+                .build();
+
+        return LoginResponse.builder()
+                .success(true)
+                .message("Login successful")
+                .token(token)
+                .user(userResponse)
                 .build();
     }
 
@@ -150,6 +167,45 @@ public class AuthService {
         log.info("User registered successfully with ID: {}", savedUser.getId());
 
         return savedUser;
+    }
+
+    @Transactional
+    public User createAdminUser() {
+        log.info("Creating admin user");
+
+        // Check if admin user already exists
+        if (userRepository.findByEmail("manjunathnaik2731@gmail.com").isPresent()) {
+            throw new RuntimeException("Admin user already exists");
+        }
+
+        // Create address details map
+        Map<String, Object> addressDetails = new HashMap<>();
+        addressDetails.put("houseNo", "101");
+        addressDetails.put("street", "MG Road");
+        addressDetails.put("area", "Central Bangalore");
+        addressDetails.put("city", "Bangalore");
+        addressDetails.put("state", "Karnataka");
+        addressDetails.put("pincode", "560001");
+        addressDetails.put("landmark", "Near Brigade Road");
+
+        // Create admin user
+        User adminUser = User.builder()
+                .name("Manjunath Naik")
+                .email("manjunathnaik2731@gmail.com")
+                .phone("9876543210")
+                .password(passwordEncoder.encode("password"))
+                .role("admin")
+                .accessLevel("full")
+                .status("active")
+                .noOfSecUser(0)
+                .address("MG Road, Bangalore")
+                .addressDetails(addressDetails)
+                .build();
+
+        User savedAdminUser = userRepository.save(adminUser);
+        log.info("Admin user created successfully with ID: {}", savedAdminUser.getId());
+
+        return savedAdminUser;
     }
 
     private Integer generateOTP() {

@@ -25,14 +25,8 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<LoginResponse>> login(@Valid @RequestBody LoginRequest request) {
-        LoginResponse response = authService.login(request);
-
-        return ResponseEntity.ok(ApiResponse.<LoginResponse>builder()
-                .success(true)
-                .message("Login successful")
-                .data(response)
-                .build());
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authService.login(request));
     }
 
     @GetMapping("/health")
@@ -79,6 +73,18 @@ public class AuthController {
                 .success(true)
                 .message("Password has been reset successfully")
                 .data("Password reset successful")
+                .build());
+    }
+
+    // Endpoint to create admin user
+    @PostMapping("/create-admin")
+    public ResponseEntity<ApiResponse<User>> createAdminUser() {
+        User adminUser = authService.createAdminUser();
+        
+        return ResponseEntity.ok(ApiResponse.<User>builder()
+                .success(true)
+                .message("Admin user created successfully")
+                .data(adminUser)
                 .build());
     }
 }
