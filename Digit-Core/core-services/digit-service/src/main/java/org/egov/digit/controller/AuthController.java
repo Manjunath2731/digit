@@ -36,44 +36,48 @@ public class AuthController {
         healthData.put("service", "digit-service");
         healthData.put("timestamp", LocalDateTime.now().toString());
 
-        return ResponseEntity.ok(ApiResponse.<Map<String, Object>>builder()
+        ApiResponse<Map<String, Object>> response = ApiResponse.<Map<String, Object>>builder()
                 .success(true)
                 .message("Digit Service is running")
                 .data(healthData)
-                .build());
+                .build();
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<User>> register(@Valid @RequestBody RegisterRequest request) {
         User user = authService.register(request);
         
-        return ResponseEntity.ok(ApiResponse.<User>builder()
+        ApiResponse<User> response = ApiResponse.<User>builder()
                 .success(true)
                 .message("User registered successfully")
                 .data(user)
-                .build());
+                .build();
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/forgot-password")
     public ResponseEntity<ApiResponse<String>> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
         authService.forgotPassword(request);
 
-        return ResponseEntity.ok(ApiResponse.<String>builder()
+        ApiResponse<String> response = ApiResponse.<String>builder()
                 .success(true)
                 .message("Password reset OTP has been sent to your email")
                 .data("OTP sent successfully")
-                .build());
+                .build();
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/reset-password")
     public ResponseEntity<ApiResponse<String>> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
         authService.resetPassword(request);
 
-        return ResponseEntity.ok(ApiResponse.<String>builder()
+        ApiResponse<String> response = ApiResponse.<String>builder()
                 .success(true)
                 .message("Password has been reset successfully")
                 .data("Password reset successful")
-                .build());
+                .build();
+        return ResponseEntity.ok(response);
     }
 
     // Endpoint to create admin user
@@ -81,10 +85,11 @@ public class AuthController {
     public ResponseEntity<ApiResponse<User>> createAdminUser() {
         User adminUser = authService.createAdminUser();
         
-        return ResponseEntity.ok(ApiResponse.<User>builder()
+        ApiResponse<User> response = ApiResponse.<User>builder()
                 .success(true)
                 .message("Admin user created successfully")
                 .data(adminUser)
-                .build());
+                .build();
+        return ResponseEntity.ok(response);
     }
 }

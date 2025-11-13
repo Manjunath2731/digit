@@ -1,6 +1,5 @@
 package org.egov.digit.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.egov.digit.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +13,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ApiResponse<Object>> handleRuntimeException(RuntimeException ex) {
-        log.error("RuntimeException: ", ex);
+        System.out.println("RuntimeException: " + ex.getMessage());
+        ApiResponse<Object> response = ApiResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .build();
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(ApiResponse.builder()
-                        .success(false)
-                        .message(ex.getMessage())
-                        .build());
+                .body(response);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -38,34 +37,37 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
 
+        ApiResponse<Map<String, String>> response = ApiResponse.<Map<String, String>>builder()
+                .success(false)
+                .message("Validation failed")
+                .data(errors)
+                .build();
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(ApiResponse.<Map<String, String>>builder()
-                        .success(false)
-                        .message("Validation failed")
-                        .data(errors)
-                        .build());
+                .body(response);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ApiResponse<Object>> handleAccessDeniedException(AccessDeniedException ex) {
-        log.error("AccessDeniedException: ", ex);
+        System.out.println("AccessDeniedException: " + ex.getMessage());
+        ApiResponse<Object> response = ApiResponse.builder()
+                .success(false)
+                .message("Access denied")
+                .build();
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .body(ApiResponse.builder()
-                        .success(false)
-                        .message("Access denied")
-                        .build());
+                .body(response);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Object>> handleException(Exception ex) {
-        log.error("Unexpected error: ", ex);
+        System.out.println("Unexpected error: " + ex.getMessage());
+        ApiResponse<Object> response = ApiResponse.builder()
+                .success(false)
+                .message("Internal server error: " + ex.getMessage())
+                .build();
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.builder()
-                        .success(false)
-                        .message("Internal server error: " + ex.getMessage())
-                        .build());
+                .body(response);
     }
 }

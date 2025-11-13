@@ -1,7 +1,6 @@
 package org.egov.digit.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.egov.digit.dto.ForgotPasswordRequest;
 import org.egov.digit.dto.LoginRequest;
 import org.egov.digit.dto.LoginResponse;
@@ -23,7 +22,6 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class AuthService {
 
     private final UserRepository userRepository;
@@ -33,18 +31,18 @@ public class AuthService {
 
     @Transactional
     public LoginResponse login(LoginRequest request) {
-        log.info("Login attempt for email: {}", request.getEmail());
+        System.out.println("Login attempt for email: " + request.getEmail());
 
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            log.warn("Invalid password for email: {}", request.getEmail());
+            System.out.println("Invalid password for email: " + request.getEmail());
             throw new RuntimeException("Invalid email or password");
         }
 
         if (!"active".equals(user.getStatus())) {
-            log.warn("Inactive user login attempt: {}", request.getEmail());
+            System.out.println("Inactive user login attempt: " + request.getEmail());
             throw new RuntimeException("User account is inactive");
         }
 
@@ -55,7 +53,7 @@ public class AuthService {
         // Generate JWT token
         String token = jwtUtil.generateToken(user);
 
-        log.info("Login successful for user: {}", user.getEmail());
+        System.out.println("Login successful for user: " + user.getEmail());
 
         // Build user response
         LoginResponse.UserResponse userResponse = LoginResponse.UserResponse.builder()
@@ -84,7 +82,7 @@ public class AuthService {
 
     @Transactional
     public void forgotPassword(ForgotPasswordRequest request) {
-        log.info("Forgot password request for email: {}", request.getEmail());
+        System.out.println("Forgot password request for email: " + request.getEmail());
 
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + request.getEmail()));
@@ -106,7 +104,7 @@ public class AuthService {
 
         // TODO: Send OTP via email
         // For now, we'll just log it (in production, integrate with email service)
-        log.info("Password reset OTP for {}: {}", request.getEmail(), otp);
+        System.out.println("Password reset OTP for " + request.getEmail() + ": " + otp);
         
         // In a real application, send email here
         // emailService.sendPasswordResetOTP(user.getEmail(), otp);
@@ -114,7 +112,7 @@ public class AuthService {
 
     @Transactional
     public void resetPassword(ResetPasswordRequest request) {
-        log.info("Reset password request for email: {}", request.getEmail());
+        System.out.println("Reset password request for email: " + request.getEmail());
 
         // Find the reset token
         PasswordResetToken token = passwordResetTokenRepository
@@ -123,7 +121,7 @@ public class AuthService {
 
         // Check if token is expired
         if (token.isExpired()) {
-            log.warn("Expired OTP used for email: {}", request.getEmail());
+            System.out.println("Expired OTP used for email: " + request.getEmail());
             throw new RuntimeException("OTP has expired. Please request a new one.");
         }
 
@@ -139,12 +137,12 @@ public class AuthService {
         token.setUsed(true);
         passwordResetTokenRepository.save(token);
 
-        log.info("Password reset successful for user: {}", user.getEmail());
+        System.out.println("Password reset successful for user: " + user.getEmail());
     }
 
     @Transactional
     public User register(RegisterRequest request) {
-        log.info("Registration request for email: {}", request.getEmail());
+        System.out.println("Registration request for email: " + request.getEmail());
 
         // Check if user already exists
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
@@ -164,14 +162,14 @@ public class AuthService {
                 .build();
 
         User savedUser = userRepository.save(user);
-        log.info("User registered successfully with ID: {}", savedUser.getId());
+        System.out.println("User registered successfully with ID: " + savedUser.getId());
 
         return savedUser;
     }
 
     @Transactional
     public User createAdminUser() {
-        log.info("Creating admin user");
+        System.out.println("Creating admin user");
 
         // Check if admin user already exists
         if (userRepository.findByEmail("manjunathnaik2731@gmail.com").isPresent()) {
@@ -203,7 +201,7 @@ public class AuthService {
                 .build();
 
         User savedAdminUser = userRepository.save(adminUser);
-        log.info("Admin user created successfully with ID: {}", savedAdminUser.getId());
+        System.out.println("Admin user created successfully with ID: " + savedAdminUser.getId());
 
         return savedAdminUser;
     }

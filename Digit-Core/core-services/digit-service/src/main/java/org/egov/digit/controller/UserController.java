@@ -62,17 +62,19 @@ public class UserController {
                     .build();
             }).collect(Collectors.toList());
             
-            return ResponseEntity.ok(UserListResponse.builder()
+            UserListResponse response = UserListResponse.builder()
                 .success(true)
                 .count(userResponses.size())
                 .data(userResponses)
-                .build());
+                .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(UserListResponse.builder()
+            UserListResponse response = UserListResponse.builder()
                 .success(false)
                 .count(0)
                 .data(List.of())
-                .build());
+                .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -84,16 +86,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             User user = userService.createUser(email, request);
-            return ResponseEntity.ok(ApiResponse.<User>builder()
+            ApiResponse<User> response = ApiResponse.<User>builder()
                     .success(true)
                     .message("User created successfully")
                     .data(user)
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<User>builder()
+            ApiResponse<User> response = ApiResponse.<User>builder()
                     .success(false)
                     .message("Failed to create user: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -106,16 +110,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             User user = userService.updateUserStatus(email, id, request);
-            return ResponseEntity.ok(ApiResponse.<User>builder()
+            ApiResponse<User> response = ApiResponse.<User>builder()
                     .success(true)
                     .message("User status updated successfully")
                     .data(user)
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<User>builder()
+            ApiResponse<User> response = ApiResponse.<User>builder()
                     .success(false)
                     .message("Failed to update user status: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -127,16 +133,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             userService.deleteUser(email, id);
-            return ResponseEntity.ok(ApiResponse.<String>builder()
+            ApiResponse<String> response = ApiResponse.<String>builder()
                     .success(true)
                     .message("User deleted successfully")
                     .data("User deleted successfully")
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<String>builder()
+            ApiResponse<String> response = ApiResponse.<String>builder()
                     .success(false)
                     .message("Failed to delete user: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -148,16 +156,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             User user = userService.getUserById(email, id);
-            return ResponseEntity.ok(ApiResponse.<User>builder()
+            ApiResponse<User> response = ApiResponse.<User>builder()
                     .success(true)
                     .message("User fetched successfully")
                     .data(user)
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<User>builder()
+            ApiResponse<User> response = ApiResponse.<User>builder()
                     .success(false)
                     .message("Failed to fetch user: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -170,16 +180,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             UserDevice device = userService.addDevice(email, id, request);
-            return ResponseEntity.ok(ApiResponse.<UserDevice>builder()
+            ApiResponse<UserDevice> response = ApiResponse.<UserDevice>builder()
                     .success(true)
                     .message("Device added successfully")
                     .data(device)
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<UserDevice>builder()
+            ApiResponse<UserDevice> response = ApiResponse.<UserDevice>builder()
                     .success(false)
                     .message("Failed to add device: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -191,16 +203,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             List<UserDevice> devices = userService.getUserDevices(email, id);
-            return ResponseEntity.ok(ApiResponse.<List<UserDevice>>builder()
+            ApiResponse<List<UserDevice>> response = ApiResponse.<List<UserDevice>>builder()
                     .success(true)
                     .message("Devices fetched successfully")
                     .data(devices)
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<List<UserDevice>>builder()
+            ApiResponse<List<UserDevice>> response = ApiResponse.<List<UserDevice>>builder()
                     .success(false)
                     .message("Failed to fetch devices: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -214,16 +228,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             UserDevice device = userService.updateDevice(email, userId, deviceId, request);
-            return ResponseEntity.ok(ApiResponse.<UserDevice>builder()
+            ApiResponse<UserDevice> response = ApiResponse.<UserDevice>builder()
                     .success(true)
                     .message("Device updated successfully")
                     .data(device)
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<UserDevice>builder()
+            ApiResponse<UserDevice> response = ApiResponse.<UserDevice>builder()
                     .success(false)
                     .message("Failed to update device: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 
@@ -236,16 +252,18 @@ public class UserController {
         try {
             String email = jwtUtil.extractEmail(token.substring(7)); // Remove "Bearer " prefix
             userService.deleteDevice(email, userId, deviceId);
-            return ResponseEntity.ok(ApiResponse.<String>builder()
+            ApiResponse<String> response = ApiResponse.<String>builder()
                     .success(true)
                     .message("Device deleted successfully")
                     .data("Device deleted successfully")
-                    .build());
+                    .build();
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(ApiResponse.<String>builder()
+            ApiResponse<String> response = ApiResponse.<String>builder()
                     .success(false)
                     .message("Failed to delete device: " + e.getMessage())
-                    .build());
+                    .build();
+            return ResponseEntity.status(500).body(response);
         }
     }
 }
