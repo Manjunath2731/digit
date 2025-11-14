@@ -26,7 +26,9 @@ public class UserResponse {
     private String address;
     private Map<String, Object> addressdetails;
     private LocalDateTime lastLoginDate;
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
+    @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
     private List<DeviceResponse> devices;
 
