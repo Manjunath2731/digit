@@ -25,6 +25,8 @@ const SecondaryUserManagement: React.FC = () => {
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive'>('all');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
+
+  console.log('User:', user);
   
   useEffect(() => {
     // Get user data from local storage
@@ -223,7 +225,7 @@ const SecondaryUserManagement: React.FC = () => {
               </div>
               <h1>Secondary Users List</h1>
             </div>
-            <button className="add-secondary-user-btn" onClick={handleAddUser} disabled={users.length >= user.noofsecuser}>
+            <button className="add-secondary-user-btn" onClick={handleAddUser}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>

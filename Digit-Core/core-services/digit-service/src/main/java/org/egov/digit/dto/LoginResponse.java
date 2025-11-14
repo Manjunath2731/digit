@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -28,13 +30,19 @@ public class LoginResponse {
         private String email;
         private String phone;
         private String role;
+        @JsonProperty("access_level")
         private String accessLevel;
         private String status;
+        @JsonProperty("noofsecuser")
         private Integer noOfSecUser;
         private String address;
+        @JsonProperty("addressdetails")
         private Map<String, Object> addressDetails;
+        @JsonProperty("last_login_date")
         private LocalDateTime lastLoginDate;
+        @JsonProperty("created_at")
         private LocalDateTime createdAt;
+        @JsonProperty("updated_at")
         private LocalDateTime updatedAt;
     }
 }

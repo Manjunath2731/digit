@@ -20,11 +20,15 @@ public class UserResponse {
     private String email;
     private String phone;
     private String role;
+    @JsonProperty("access_level")
     private String accessLevel;
     private String status;
+    @JsonProperty("noofsecuser")
     private Integer noofsecuser;
     private String address;
+    @JsonProperty("addressdetails")
     private Map<String, Object> addressdetails;
+    @JsonProperty("last_login_date")
     private LocalDateTime lastLoginDate;
     @JsonProperty("created_at")
     private LocalDateTime createdAt;
